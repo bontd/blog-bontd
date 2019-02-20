@@ -1,0 +1,320 @@
+<?php
+/**
+@ Khai bao hang gia tri
+	@ THEME_URL = lay duong dan thu muc theme
+	@ CORE = lay duong dan cua thu muc /core
+**/
+define( 'THEME_URL', get_stylesheet_directory() );
+define ( 'CORE', THEME_URL . "/core" );
+/**
+@ Nhung file /core/init.php
+**/
+require_once( CORE . "/init.php" );
+
+/**
+@ Thiet lap chieu rong noi dung
+**/
+if ( !isset($content_width) ) {
+	$content_width = 620;
+}
+
+/**
+@ Khai bao chuc nang cua theme
+**/
+if ( !function_exists('wp_theme_setup') ) {
+	function wp_theme_setup() {
+
+		/* Thiet lap textdomain */
+		$language_folder = THEME_URL . '/languages';
+		load_theme_textdomain( 'wp', $language_folder );
+		/* Tu dong them link RSS len <head> **/
+		add_theme_support( 'automatic-feed-links' );
+
+		/* Them post thumbnail */
+		add_theme_support( 'post-thumbnails' );
+
+		/* Post Format */
+		add_theme_support( 'post-formats', array(
+			'image',
+			'video',
+			'gallery',
+			'quote',
+			'link'
+		) );
+
+		/* Them title-tag */
+		add_theme_support( 'title-tag' );
+
+		/* Them custom background */
+		$default_background = array(
+			'default-color' => '#e8e8e8'
+		);
+		add_theme_support( 'custom-background', $default_background );
+
+		/* Them menu */
+		register_nav_menu( 'primary-menu', __('Primary Menu', 'wp') );
+
+		/* Tao sidebar */
+		$sidebar = array(
+			'name' => __('Main Sidebar', 'wp'),
+			'id' => 'main-sidebar',
+			'description' => __('Default sidebar'),
+			'class' => 'main-sidebar',
+			'before_title' => '<h3 class="widgettitle">',
+			'after_title' => '</h3>'
+		);
+		register_sidebar( $sidebar );
+
+	}
+	add_action( 'init', 'wp_theme_setup' );
+}
+
+
+/*--------
+TEMPLATE FUNCTIONS */
+if (!function_exists('wp_header')) {
+	function wp_header() { ?>
+		<div class="site-name">
+			<?php
+				global $tp_options;
+
+				if( $tp_options['logo-on'] == 0 ) :
+			?>
+				<?php
+					if ( is_home() ) {
+						printf( '<h1><a href="%1$s" title="%2$s">%3$s</a></h1>',
+						get_bloginfo('url'),
+						get_bloginfo('description'),
+						get_bloginfo('sitename') );
+					} else {
+						printf( '<p><a href="%1$s" title="%2$s">%3$s</a></p>',
+						get_bloginfo('url'),
+						get_bloginfo('description'),
+						get_bloginfo('sitename') );
+					}
+				?>
+
+			<?php
+				else :
+			?>
+				<img src="<?php echo $tp_options['logo-image']['url']; ?>" />
+		<?php endif; ?>
+		</div>
+		<div class="site-description"><?php bloginfo('description'); ?></div><?php
+	}
+}
+
+/**
+Thiet lap menu
+**/
+if ( !function_exists('wp_menu') ) {
+	function wp_menu($menu) {
+		$menu = array(
+			'theme_location' => $menu,
+			'container' => 'nav',
+			'container_class' => $menu,
+			'items_wrap' => '<ul id="%1$s" class="%2$s nav-menu nav navbar-nav">%3$s</ul>'
+		);
+		wp_nav_menu( $menu );
+	}
+}
+
+add_filter('nav_menu_css_class' , 'special_nav_class' , 10 , 2);
+
+function special_nav_class ($classes, $item) {
+    if (in_array('current-menu-item', $classes) ){
+        $classes[] = 'active ';
+    }
+    return $classes;
+}
+
+/**
+Ham tao phan trang don gian
+**/
+if ( !function_exists('wp_pagination') ) {
+	function wp_pagination() {
+		if ( $GLOBALS['wp_query']->max_num_pages < 2 ) {
+			return '';
+		} ?>
+		<nav class="pagination" role="navigation">
+			<?php if ( get_next_posts_link() ) : ?>
+				<div class="prev"><?php next_posts_link( __('Older Posts', 'wp') ); ?></div>
+			<?php endif; ?>
+			<?php if ( get_previous_posts_link() ) : ?>
+				<div class="next"><?php previous_posts_link( __('Newest Posts', 'wp') ); ?></div>
+			<?php endif; ?>
+		</nav>
+	<?php }
+}
+
+/**
+Ham hien thi thumbnail
+**/
+if ( !function_exists('wp_thumbnail') ) {
+	function wp_thumbnail($size) {
+		if( !is_single() && has_post_thumbnail() && !post_password_required() || has_post_format('image') ) : ?>
+		<figure class="post-thumbnail"><?php the_post_thumbnail( $size ); ?></figure>
+	<?php endif; ?>
+	<?php }
+}
+
+/**
+wp_entry_header = hien thi tieu de post
+**/
+if ( !function_exists('wp_entry_header') ) {
+	function wp_entry_header() { ?>
+		<?php if ( is_single() ) : ?>
+			<h1 class="entry-title"><a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>"><?php the_title(); ?></a></h1>
+		<?php else : ?>
+					<h2 class="entry-title"><a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>"><?php the_title(); ?></a></h2>
+		<?php endif; ?>
+	<?php }
+}
+
+/**
+wp_entry_meta = lay du lieu post
+**/
+if ( !function_exists('wp_entry_meta') ) {
+	function wp_entry_meta() { ?>
+		<?php if ( !is_page() ) : ?>
+			<div class="entry-meta">
+			<?php
+				printf( __('<span class="author">Posted by %1$s', 'wp'),
+				get_the_author() );
+
+				printf( __('<span class="date-published"> at %1$s', 'wp'),
+				get_the_date() );
+
+				printf( __('<span class="category"> in %1$s ', 'wp'),
+				get_the_category_list( ',' ) );
+
+				if ( comments_open() ) :
+					echo '<span class="meta-reply">';
+						comments_popup_link(
+							__('Leave a comment', 'wp'),
+							__('One comment', 'wp'),
+							__('% comments', 'wp'),
+							__('Read all comments', 'wp')
+							);
+					echo '</span>';
+				endif;
+			?>
+			</div>
+		<?php endif; ?>
+	<?php }
+}
+
+/**
+wp_entry_content = ham hien thi noi dung cua post/page
+**/
+if ( !function_exists('wp_entry_content') ) {
+	function wp_entry_content() {
+		if( !is_single() && !is_page() ) {
+			the_excerpt();
+		} else {
+			the_content();
+
+			/* Phan trang trong single */
+			$link_pages = array(
+				'before' => __('<p>Page: ', 'wp'),
+				'after' => '</p>',
+				'nextpagelink' => __('Next Page', 'wp'),
+				'previouspagelink' => __('Previous Page', 'wp')
+			);
+			wp_link_pages( $link_pages );
+		}
+	}
+}
+
+function wp_readmore() {
+	return '<a class="read-more" href="'. get_permalink( get_the_ID() ) . '">'.__('...[Read More]', 'wp').'</a>';
+}
+add_filter('excerpt_more', 'wp_readmore');
+
+
+/**
+wp_entry_tag = hien thi tag
+**/
+if ( !function_exists('wp_entry_tag') ) {
+	function wp_entry_tag() {
+		if ( has_tag() ) :
+			echo '<div class="entry-tag">';
+			printf( __('Tagged in %1$s', 'wp'), get_the_tag_list( '', ',' ) );
+			echo '</div>';
+		endif;
+	}
+}
+
+
+
+/*=====Nhúng file style.css=====*/
+function wp_style() {
+	wp_register_style( 'bootstrap', get_template_directory_uri() . "/assets/css/bootstrap.min.css", 'all' );
+	wp_enqueue_style('bootstrap');
+	wp_register_style( 'awesome', get_template_directory_uri() . "/assets/css/font-awesome.min.css", 'all' );
+	wp_enqueue_style('awesome');
+	wp_register_style( 'reset-style', get_template_directory_uri() . "/reset.css", 'all' );
+	wp_enqueue_style('reset-style');
+	wp_register_style( 'style-template', get_template_directory_uri() . "/assets/css/style.css", 'all' );
+	wp_enqueue_style('style-template');
+	wp_register_style( 'main-style', get_template_directory_uri() . "/style.css", 'all' );
+	wp_enqueue_style('main-style');
+
+	wp_register_script( 'jquery-script', get_template_directory_uri() . "/assets/js/jquery.min.js", array('jquery') );
+	wp_enqueue_script('jquery-script');
+	wp_register_script( 'bootstrap-script', get_template_directory_uri() . "/assets/js/bootstrap.min.js", array('jquery') );
+	wp_enqueue_script('bootstrap-script');
+	wp_register_script( 'main-script', get_template_directory_uri() . "/assets/js/main.js", array('jquery') );
+	wp_enqueue_script('main-script');
+}
+add_action('wp_enqueue_scripts', 'wp_style');
+
+
+
+
+function tao_custom_post_type()
+{
+
+    $label = array(
+        'name' => 'QA',
+        'singular_name' => 'Question'
+    );
+
+    /*
+     * Biến $args là những tham số quan trọng trong Post Type
+     */
+    $args = array(
+        'labels' => $label,
+        'description' => 'Post type Question',
+        'supports' => array(
+            'title',
+            'editor',
+            // 'excerpt',
+            // 'author',
+            // 'thumbnail',
+            // 'comments',
+            // 'trackbacks',
+            // 'revisions',
+            // 'custom-fields'
+        ),
+        // 'taxonomies' => array( 'category', 'post_tag' ),
+        'hierarchical' => false,
+        'public' => false,
+        'show_ui' => true,
+        'show_in_menu' => true,
+        'show_in_nav_menus' => true,
+        'show_in_admin_bar' => true,
+        'menu_position' => 5,
+        'menu_icon' => 'dashicons-megaphone',
+        'can_export' => true,
+        'has_archive' => true,
+        'exclude_from_search' => false,
+        'publicly_queryable' => true,
+        'capability_type' => 'post',
+        'supports' => array('title')
+    );
+
+    register_post_type('question', $args);
+
+}
+add_action('init', 'tao_custom_post_type');
