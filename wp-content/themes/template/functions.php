@@ -264,57 +264,55 @@ function wp_style() {
 	wp_enqueue_script('jquery-script');
 	wp_register_script( 'bootstrap-script', get_template_directory_uri() . "/assets/js/bootstrap.min.js", array('jquery') );
 	wp_enqueue_script('bootstrap-script');
-	wp_register_script( 'main-script', get_template_directory_uri() . "/assets/js/main.js", array('jquery') );
-	wp_enqueue_script('main-script');
 }
 add_action('wp_enqueue_scripts', 'wp_style');
 
 
 
 
-function tao_custom_post_type()
-{
+// function tao_custom_post_type()
+// {
 
-    $label = array(
-        'name' => 'QA',
-        'singular_name' => 'Question'
-    );
+//     $label = array(
+//         'name' => 'QA',
+//         'singular_name' => 'Question'
+//     );
 
-    /*
-     * Biến $args là những tham số quan trọng trong Post Type
-     */
-    $args = array(
-        'labels' => $label,
-        'description' => 'Post type Question',
-        'supports' => array(
-            'title',
-            'editor',
-            // 'excerpt',
-            // 'author',
-            // 'thumbnail',
-            // 'comments',
-            // 'trackbacks',
-            // 'revisions',
-            // 'custom-fields'
-        ),
-        // 'taxonomies' => array( 'category', 'post_tag' ),
-        'hierarchical' => false,
-        'public' => false,
-        'show_ui' => true,
-        'show_in_menu' => true,
-        'show_in_nav_menus' => true,
-        'show_in_admin_bar' => true,
-        'menu_position' => 5,
-        'menu_icon' => 'dashicons-megaphone',
-        'can_export' => true,
-        'has_archive' => true,
-        'exclude_from_search' => false,
-        'publicly_queryable' => true,
-        'capability_type' => 'post',
-        'supports' => array('title')
-    );
+//     /*
+//      * Biến $args là những tham số quan trọng trong Post Type
+//      */
+//     $args = array(
+//         'labels' => $label,
+//         'description' => 'Post type Question',
+//         'supports' => array(
+//             'title',
+//             'editor',
+//             // 'excerpt',
+//             // 'author',
+//             // 'thumbnail',
+//             // 'comments',
+//             // 'trackbacks',
+//             // 'revisions',
+//             // 'custom-fields'
+//         ),
+//         // 'taxonomies' => array( 'category', 'post_tag' ),
+//         'hierarchical' => false,
+//         'public' => false,
+//         'show_ui' => true,
+//         'show_in_menu' => true,
+//         'show_in_nav_menus' => true,
+//         'show_in_admin_bar' => true,
+//         'menu_position' => 5,
+//         'menu_icon' => 'dashicons-megaphone',
+//         'can_export' => true,
+//         'has_archive' => true,
+//         'exclude_from_search' => false,
+//         'publicly_queryable' => true,
+//         'capability_type' => 'post',
+//         'supports' => array('title')
+//     );
 
-    register_post_type('question', $args);
+//     register_post_type('question', $args);
 
-}
-add_action('init', 'tao_custom_post_type');
+// }
+// add_action('init', 'tao_custom_post_type');
