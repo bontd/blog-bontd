@@ -7,6 +7,7 @@
 
 <?php get_header(); ?>
 <?php if ( have_posts() ) : while( have_posts() ) : the_post(); ?>
+	<?php wpb_set_post_views(get_the_ID()); wpb_get_post_views(get_the_ID());?>
 	<!-- Page Header -->
 	<div id="post-header" class="page-header">
 		<div class="background-img" style="background-image: url('<?php echo esc_url(home_url('/'));?>/wp-content/themes/template/assets/img/post-page.jpg');"></div>
@@ -198,34 +199,44 @@
 					<div class="section-title">
 						<h2>Most Read</h2>
 					</div>
-
-					<div class="post post-widget">
-						<a class="post-img" href="blog-post.html"><img src="<?php echo esc_url(home_url('/'));?>/wp-content/themes/template/assets/img/widget-1.jpg" alt=""></a>
-						<div class="post-body">
-							<h3 class="post-title"><a href="blog-post.html">Tell-A-Tool: Guide To Web Design And Development Tools</a></h3>
-						</div>
-					</div>
-
-					<div class="post post-widget">
-						<a class="post-img" href="blog-post.html"><img src="<?php echo esc_url(home_url('/'));?>/wp-content/themes/template/assets/img/widget-2.jpg" alt=""></a>
-						<div class="post-body">
-							<h3 class="post-title"><a href="blog-post.html">Pagedraw UI Builder Turns Your Website Design Mockup Into Code Automatically</a></h3>
-						</div>
-					</div>
-
-					<div class="post post-widget">
-						<a class="post-img" href="blog-post.html"><img src="<?php echo esc_url(home_url('/'));?>/wp-content/themes/template/assets/img/widget-3.jpg" alt=""></a>
-						<div class="post-body">
-							<h3 class="post-title"><a href="blog-post.html">Why Node.js Is The Coolest Kid On The Backend Development Block!</a></h3>
-						</div>
-					</div>
-
-					<div class="post post-widget">
-						<a class="post-img" href="blog-post.html"><img src="<?php echo esc_url(home_url('/'));?>/wp-content/themes/template/assets/img/widget-4.jpg" alt=""></a>
-						<div class="post-body">
-							<h3 class="post-title"><a href="blog-post.html">Tell-A-Tool: Guide To Web Design And Development Tools</a></h3>
-						</div>
-					</div>
+					
+					<?php
+				        $tags = wp_get_post_tags(get_the_ID());
+				        if ($tags) 
+				        {
+				            $tag_ids = array();
+				            foreach($tags as $individual_tag) $tag_ids[] = $individual_tag->term_id;
+							// lấy danh sách các tag liên quan
+				            $args=array(
+				            'tag__in' => $tag_ids,
+				            'post__not_in' => array(get_the_ID()),
+				            'showposts'=>4,
+				            'caller_get_posts'=>1
+				            );
+				            $my_query = new wp_query($args);
+				            if( $my_query->have_posts() ) 
+				            {
+				                while ($my_query->have_posts()) 
+				                {
+				                    $my_query->the_post();
+				                    ?>
+				                    <div class="post post-widget">
+										<a class="post-img" href="<?php the_permalink() ?>" title="<?php the_title(); ?>">
+											<?php echo the_post_thumbnail();?>
+										</a>
+										<div class="post-body">
+											<h3 class="post-title">
+												<a href="<?php the_permalink() ?>" title="<?php the_title(); ?>">
+													<?php the_title(); ?>
+												</a>
+											</h3>
+										</div>
+									</div>
+				                    <?php
+				                }
+				            }
+				        }
+				    ?>
 				</div>
 				<!-- /post widget -->
 
