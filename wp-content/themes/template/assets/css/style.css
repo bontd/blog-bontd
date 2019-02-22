@@ -301,12 +301,19 @@ RESPONSIVE
      background-color: #ff8700;
 }
  #nav-fixed .nav-menu li.cat-3 a:after,
- #nav-fixed .nav-menu li.cat-Css a:after {
+ #nav-fixed .nav-menu li.cat-Css a:after,
+ #nav-fixed .nav-menu li.menu-item-57 a:after {
      background-color: #0078ff;
 }
  #nav-fixed .nav-menu li.cat-4 a:after,
- #nav-fixed .nav-menu li.cat-Web a:after {
+ #nav-fixed .nav-menu li.cat-Web a:after,
+ #nav-fixed .nav-menu li.menu-item-51 a:after {
      background-color: #8d00ff;
+}
+ #nav-fixed .nav-menu li.cat-5 a:after,
+ #nav-fixed .nav-menu li.cat-Wordpress a:after,
+ #nav-fixed .nav-menu li.menu-item-58 a:after {
+     background-color: #00b4ff;
 }
  #nav-fixed .nav-menu li a:hover, #nav-fixed .nav-menu li a:focus {
      background-color: transparent;
@@ -323,12 +330,20 @@ RESPONSIVE
      color: #ff8700;
 }
  #nav-fixed .nav-menu li.cat-3 a:hover, #nav-fixed .nav-menu li.cat-3 a:focus,
- #nav-fixed .nav-menu li.cat-Css a:hover, #nav-fixed .nav-menu li.cat-Css a:focus {
+ #nav-fixed .nav-menu li.cat-Css a:hover, #nav-fixed .nav-menu li.cat-Css a:focus,
+ #nav-fixed .nav-menu li.menu-item-57 a:hover, #nav-fixed .nav-menu li.menu-item-57 a:focus {
      color: #0078ff;
 }
  #nav-fixed .nav-menu li.cat-4 a:hover, #nav-fixed .nav-menu li.cat-4 a:focus,
- #nav-fixed .nav-menu li.cat-Web a:hover, #nav-fixed .nav-menu li.cat-Web a:focus {
+ #nav-fixed .nav-menu li.cat-Web a:hover, #nav-fixed .nav-menu li.cat-Web a:focus,
+ #nav-fixed .nav-menu li.menu-item-51 a:hover, #nav-fixed .nav-menu li.menu-item-51 a:focus {
      color: #8d00ff;
+}
+
+#nav-fixed .nav-menu li.cat-5 a:hover, #nav-fixed .nav-menu li.cat-5 a:focus,
+ #nav-fixed .nav-menu li.cat-Wordpress a:hover, #nav-fixed .nav-menu li.cat-Wordpress a:focus,
+ #nav-fixed .nav-menu li.menu-item-58 a:hover, #nav-fixed .nav-menu li.menu-item-58 a:focus {
+     color: #00b4ff;
 }
 /*----------------------------*\
 	search
@@ -564,11 +579,11 @@ RESPONSIVE
  .post-meta .post-category.cat-JavaScript {
      background-color: #ff8700;
 }
- .post-meta .post-category.cat-3,
+ .post-meta .post-category.cat-4,
  .post-meta .post-category.cat-Css {
      background-color: #8d00ff;
 }
- .post-meta .post-category.cat-4,
+ .post-meta .post-category.cat-3,
  .post-meta .post-category.cat-Web {
      background-color: #0078ff;
 }
