@@ -9,6 +9,9 @@
     <?php wp_head(); ?>
 </head>
 <body <?php body_class(); ?> >
+    <?php
+        global $tp_options;
+    ?>
     <!-- Header -->
     <header id="header">
         <!-- Nav -->
@@ -18,7 +21,13 @@
                 <div class="container">
                     <!-- logo -->
                     <div class="nav-logo">
-                        <a href="index.html" class="logo"><img src="<?php echo esc_url(home_url('/'));?>/wp-content/themes/template/assets/img/logo.png" alt=""></a>
+                        <?php
+                        if($tp_options['logo-on'] == 1) {
+                    ?>
+                        <a href="<?php echo esc_url(home_url('/'));?>" class="logo">
+                            <img src="<?php echo $tp_options['logo-image']['url']; ?>">
+                        </a>
+                    <?php } ?>
                     </div>
                     <!-- /logo -->
                     <!-- nav -->
@@ -26,12 +35,14 @@
                     <!-- /nav -->
                     <!-- search & aside toggle -->
                     <div class="nav-btns">
-                        <button class="aside-btn"><i class="fa fa-bars"></i></button>
-                        <button class="search-btn"><i class="fa fa-search"></i></button>
-                        <div class="search-form">
-                            <input class="search-input" type="text" name="search" placeholder="Enter Your Search ...">
-                            <button class="search-close"><i class="fa fa-times"></i></button>
-                        </div>
+                        <button type="button" class="aside-btn"><i class="fa fa-bars"></i></button>
+                        <button type="button" class="search-btn"><i class="fa fa-search"></i></button>
+                        <form method="get" action="<?php echo home_url( '/' );?>">
+                            <div class="search-form">
+                                <input class="search-input" type="text" name="search" placeholder="Enter Your Search ...">
+                                <button type="button" class="search-close"><i class="fa fa-times"></i></button>
+                            </div>
+                        </form>
                     </div>
                     <!-- /search & aside toggle -->
                 </div>
@@ -40,39 +51,33 @@
             <!-- Aside Nav -->
             <div id="nav-aside">
                 <!-- nav -->
-                <div class="section-row">
-                    <ul class="nav-aside-menu">
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="about.html">About Us</a></li>
-                        <li><a href="#">Join Us</a></li>
-                        <li><a href="#">Advertisement</a></li>
-                        <li><a href="contact.html">Contacts</a></li>
-                    </ul>
+                <div class="section-row nav-aside-menu">
+                    <?php wp_menu('primary-menu'); ?>
                 </div>
                 <!-- /nav -->
                 <!-- widget posts -->
                 <div class="section-row">
                     <h3>Recent Posts</h3>
-                    <div class="post post-widget">
-                        <a class="post-img" href="blog-post.html"><img src="<?php echo esc_url(home_url('/'));?>/wp-content/themes/template/assets/img/widget-2.jpg" alt=""></a>
-                        <div class="post-body">
-                            <h3 class="post-title"><a href="blog-post.html">Pagedraw UI Builder Turns Your Website Design Mockup Into Code Automatically</a></h3>
+                    <?php
+                        $get_post = new WP_Query(array(
+                            'posts_per_page' => 3, 
+                            'meta_key' => 'wpb_post_views_count', 
+                            'orderby' => 'meta_value_num', 
+                            'order' => 'DESC'  
+                        ));
+                    ?>
+                    <?php while ($get_post->have_posts()) : $get_post->the_post(); ?>
+                        <div class="post post-widget">
+                            <a class="post-img" href="<?php echo esc_url( get_permalink() ); ?>">
+                                <?php echo the_post_thumbnail();?>
+                            </a>
+                            <div class="post-body">
+                                <h3 class="post-title">
+                                    <a href="<?php echo esc_url( get_permalink() ); ?>"><?php the_title();?></a>
+                                </h3>
+                            </div>
                         </div>
-                    </div>
-
-                    <div class="post post-widget">
-                        <a class="post-img" href="blog-post.html"><img src="<?php echo esc_url(home_url('/'));?>/wp-content/themes/template/assets/img/widget-3.jpg" alt=""></a>
-                        <div class="post-body">
-                            <h3 class="post-title"><a href="blog-post.html">Why Node.js Is The Coolest Kid On The Backend Development Block!</a></h3>
-                        </div>
-                    </div>
-
-                    <div class="post post-widget">
-                        <a class="post-img" href="blog-post.html"><img src="<?php echo esc_url(home_url('/'));?>/wp-content/themes/template/assets/img/widget-4.jpg" alt=""></a>
-                        <div class="post-body">
-                            <h3 class="post-title"><a href="blog-post.html">Tell-A-Tool: Guide To Web Design And Development Tools</a></h3>
-                        </div>
-                    </div>
+                    <?php endwhile ; wp_reset_query() ;?>
                 </div>
                 <!-- /widget posts -->
                 <!-- social links -->
