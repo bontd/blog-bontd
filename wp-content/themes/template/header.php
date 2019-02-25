@@ -39,7 +39,7 @@
                         <button type="button" class="search-btn"><i class="fa fa-search"></i></button>
                         <form method="get" action="<?php echo home_url( '/' );?>">
                             <div class="search-form">
-                                <input class="search-input" type="text" name="search" placeholder="Enter Your Search ...">
+                                <input type="text" class="search-input" onfocus="if (this.value == 'Search') {this.value = '';}" onblur="if (this.value == '')  {this.value = 'Search';}" id="s" name="s" value="Search" placeholder="Enter Your Search ..." />
                                 <button type="button" class="search-close"><i class="fa fa-times"></i></button>
                             </div>
                         </form>
@@ -57,7 +57,7 @@
                 <!-- /nav -->
                 <!-- widget posts -->
                 <div class="section-row">
-                    <h3>Recent Posts</h3>
+                    <h3>Bài viết xem nhiều</h3>
                     <?php
                         $get_post = new WP_Query(array(
                             'posts_per_page' => 3, 
@@ -84,10 +84,18 @@
                 <div class="section-row">
                     <h3>Follow us</h3>
                     <ul class="nav-aside-social">
-                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                        <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-                        <li><a href="#"><i class="fa fa-pinterest"></i></a></li>
+                        <?php if($tp_options['facebook']){?>
+                            <li><a href="<?php echo $tp_options['facebook'] ?>" target="_blank"><i class="fa fa-facebook"></i></a></li>
+                        <?php } ?>
+                        <?php if($tp_options['twitter']){?>
+                            <li><a href="<?php echo $tp_options['twitter'] ?>" target="_blank"><i class="fa fa-twitter"></i></a></li>
+                        <?php } ?>
+                        <?php if($tp_options['google']){?>
+                            <li><a href="<?php echo $tp_options['google'] ?>" target="_blank"><i class="fa fa-google-plus"></i></a></li>
+                        <?php } ?>
+                        <?php if($tp_options['pinterest']){?>
+                            <li><a href="<?php echo $tp_options['pinterest'] ?>" target="_blank"><i class="fa fa-pinterest"></i></a></li>
+                        <?php } ?>
                     </ul>
                 </div>
                 <!-- /social links -->

@@ -342,3 +342,35 @@ function wpb_get_post_views($postID){
     }
     return $count.' Views';
 }
+
+// search post
+function Jam_SearchFilter($query) {
+    if ($query->is_search) {
+        $query->set('post_type', 'post');
+    }
+    return $query;
+}
+
+add_filter('pre_get_posts','Jam_SearchFilter');
+
+//Code phan trang
+function custom_pagination($custom_query = null, $paged = null) {
+    global $wp_query;
+    if($custom_query) $main_query = $custom_query;
+    else $main_query = $wp_query;
+    $paged = ($paged) ? $paged : get_query_var('paged');
+    $big = 999999999;
+    $total = isset($main_query->max_num_pages)?$main_query->max_num_pages:'';
+    if($total > 1) echo '<div class="pagenavi">';
+    echo paginate_links( array(
+        'base' => str_replace( $big, '%#%', esc_url( get_pagenum_link( $big ) ) ),
+        'format' => '?paged=%#%',
+        'current' => max( 1, $paged ),
+        'total' => $total,
+        'mid_size' => '10', // Số trang hiển thị khi có nhiều trang trước khi hiển thị ...
+        'prev_text'    => __('Prev','wp'),
+        'next_text'    => __('Next','wp'),
+    ) );
+    if($total > 1) echo '</div>';
+}
+

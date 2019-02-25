@@ -33,25 +33,32 @@
 			<h2>Featured Posts</h2>
 		</div>
 		<?php 
-			$popularpost = new WP_Query( array( 
-				'posts_per_page' => 2, 
-				'meta_key' => 'wpb_post_views_count', 
-				'orderby' => 'meta_value_num', 
-				'order' => 'DESC'  
+			$viewport = new WP_Query( array(
+				'posts_per_page' => 2,
+				'meta_key' => 'wpb_post_views_count',
+				'orderby' => 'meta_value_num',
+				'order' => 'DESC'
 			) );
 			// echo '<pre>';
 			// echo print_r($popularpost);die;
-		while ( $popularpost->have_posts() ) : $popularpost->the_post();?>
-			<div class="post post-thumb">
-				<a class="post-img" href="<?php echo esc_url( get_permalink() ); ?>"><?php echo the_post_thumbnail();?></a>
-				<div class="post-body">
-					<div class="post-meta">
-						<a class="post-category cat-3" href="category.html">Jquery</a>
-						<span class="post-date"><?php echo get_the_date( 'Y.m.d' ); ?></span>
+			while ( $viewport->have_posts() ) : $viewport->the_post();?>
+				<div class="post post-thumb">
+					<a class="post-img" href="<?php echo esc_url( get_permalink() ); ?>"><?php echo the_post_thumbnail();?></a>
+					<div class="post-body">
+						<div class="post-meta">
+							<?php
+								$category_detail=get_the_category(get_the_ID());
+								foreach($category_detail as $cd){
+							?>
+								<a class="post-category cat-<?php echo $cd->term_id ?>" href="<?php echo get_category_link( $cd->term_id ); ?> ">
+									<?php echo $cd->cat_name; ?>
+								</a>
+							<?php } ?>
+							<span class="post-date"><?php echo get_the_date( 'Y.m.d' ); ?></span>
+						</div>
+						<h3 class="post-title"><a href="blog-post.html"><?php the_title(); ?></a></h3>
 					</div>
-					<h3 class="post-title"><a href="blog-post.html"><?php the_title(); ?></a></h3>
 				</div>
-			</div>
 		<?php
 			endwhile;
 		?>

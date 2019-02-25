@@ -78,6 +78,39 @@
                 );
 
                 $this->sections[] = array(
+                    'title'  => __( 'SNS', 'wp' ),
+                    'desc'   => __( 'Link mạng xã hội.', 'wp' ),
+                    'icon'   => 'el el-facebook',
+
+                    'fields' => array(
+                        array(
+                            'id'       => 'facebook',
+                            'type'     => 'text',
+                            'title'    => __( 'facebook', 'wp' ),
+                            'placeholder'   => 'https://facebook.com/user',
+                        ),
+                        array(
+                            'id'       => 'twitter',
+                            'type'     => 'text',
+                            'title'    => __( 'twitter', 'wp' ),
+                            'placeholder'   => 'https://twitter.com/user',
+                        ),
+                        array(
+                            'id'       => 'google',
+                            'type'     => 'text',
+                            'title'    => __( 'google', 'wp' ),
+                            'placeholder'   => 'https://google.com/user',
+                        ),
+                        array(
+                            'id'       => 'pinterest',
+                            'type'     => 'text',
+                            'title'    => __( 'pinterest', 'wp' ),
+                            'placeholder'   => 'https://pinterest.com/user',
+                        ),
+                    )
+                );
+
+                $this->sections[] = array(
                     'title'  => __( 'Typography', 'wp' ),
                     'desc'   => __( 'All of typography settings.', 'wp' ),
                     'icon'   => 'el el-icon-font',
