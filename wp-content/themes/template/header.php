@@ -39,7 +39,7 @@
                         <button type="button" class="search-btn"><i class="fa fa-search"></i></button>
                         <form method="get" action="<?php echo home_url( '/' );?>">
                             <div class="search-form">
-                                <input type="text" class="search-input" onfocus="if (this.value == 'Search') {this.value = '';}" onblur="if (this.value == '')  {this.value = 'Search';}" id="s" name="s" value="Search" placeholder="Enter Your Search ..." />
+                                <input type="text" class="search-input" id="s" name="s" placeholder="Enter Your Search ..." />
                                 <button type="button" class="search-close"><i class="fa fa-times"></i></button>
                             </div>
                         </form>
@@ -57,7 +57,7 @@
                 <!-- /nav -->
                 <!-- widget posts -->
                 <div class="section-row">
-                    <h3>Bài viết xem nhiều</h3>
+                    <h3><?php echo __('Bài viết xem nhiều','wp'); ?></h3>
                     <?php
                         $get_post = new WP_Query(array(
                             'posts_per_page' => 3, 
@@ -82,7 +82,7 @@
                 <!-- /widget posts -->
                 <!-- social links -->
                 <div class="section-row">
-                    <h3>Follow us</h3>
+                    <h3><?php echo __('Follow us','wp'); ?></h3>
                     <ul class="nav-aside-social">
                         <?php if($tp_options['facebook']){?>
                             <li><a href="<?php echo $tp_options['facebook'] ?>" target="_blank"><i class="fa fa-facebook"></i></a></li>

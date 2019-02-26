@@ -68,8 +68,54 @@
 	<!-- ad -->
 	<div class="aside-widget text-center">
 		<a href="#" style="display: inline-block;margin: auto;">
-			<img class="img-responsive" src="wp-content/themes/template/assets/img/ad-1.jpg" alt="">
+			<img class="img-responsive" src="<?php echo esc_url(home_url('/'));?>wp-content/themes/template/assets/img/ad-1.jpg" alt="">
 		</a>
 	</div>
 	<!-- /ad -->
+
+	<!-- catagories -->
+	<div class="aside-widget">
+		<div class="section-title">
+			<h2><?php echo __('Loại bài viết','wp'); ?></h2>
+		</div>
+		<div class="category-widget">
+			<ul>
+				<?php
+				$categories = get_categories( array(
+		            'orderby' => 'id',
+		            'parent'  => 0,
+		        ) );
+		        foreach ( $categories as $cd ) { 
+				?>
+					<li>
+						<a href="<?php echo get_category_link( $cd->term_id ); ?>" class="cat-<?php echo $cd->cat_name ?>">
+							<?php echo $cd->cat_name; ?>
+							<span>
+								<?php
+									$term = get_term( $cd->term_id, 'category' );
+									echo $term->count;
+								?>
+							</span>
+						</a>
+					</li>
+				<?php } ?>
+			</ul>
+		</div>
+	</div>
+	<!-- /catagories -->
+	
+	<!-- tags -->
+	<div class="aside-widget">
+		<div class="tags-widget">
+			<ul>
+				<?php 
+					$tags = get_tags();
+					foreach ( $tags as $tag ) { 
+				?>
+					<li><a href="<?php echo esc_url( get_tag_link( $tag->term_id ) ); ?>"><?php echo $tag->name; ?></a></li>
+				<?php } ?>
+			</ul>
+		</div>
+	</div>
+	<!-- /tags -->
 </div>

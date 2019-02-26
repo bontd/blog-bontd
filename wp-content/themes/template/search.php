@@ -14,7 +14,7 @@
 						<li><a href="index.html">Home</a></li>
 						<li>Search</li>
 					</ul>
-					<h1><?php printf(__('Chúng tôi đã tìm thấy %1$s bài viết cho truy vấn tìm kiếm của bạn.', 'wp'), $search_count); ?></h1>
+					<h1><?php printf(__('Có %1$s bài viết phù hợp với tìm kiếm của bạn.', 'wp'), $search_count); ?></h1>
 				</div>
 			</div>
 		</div>
@@ -57,13 +57,6 @@
 					<?php endwhile ?>
 					<div class="col-md-12">
 						<?php custom_pagination(); ?>
-						<!-- <ul class="pagination">
-							<li><a href="#">1</a></li>
-							<li class="active"><a href="#">2</a></li>
-							<li><a href="#">3</a></li>
-							<li><a href="#">4</a></li>
-							<li><a href="#">5</a></li>
-						</ul> -->
 					</div>
 					<?php else: ?>
 						<?php get_template_part('content', 'none'); ?>

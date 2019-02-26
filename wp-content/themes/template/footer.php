@@ -14,9 +14,13 @@
 						<li><a href="#">Advertisement</a></li>
 					</ul>
 					<div class="footer-copyright">
-						<span>&copy; <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></span>
+						<span>&copy; Copyright &copy;
+							<script>document.write(new Date().getFullYear());</script>
+							All rights reserved | This template is made with 
+							<i class="fa fa-heart-o" aria-hidden="true"></i> 
+							by 
+							<a href="https://colorlib.com" target="_blank">Colorlib</a>
+						</span>
 					</div>
 				</div>
 			</div>
@@ -27,21 +31,20 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 						<div class="footer-widget">
 							<h3 class="footer-title">About Us</h3>
 							<ul class="footer-links">
-								<li><a href="about.html">About Us</a></li>
-								<li><a href="#">Join Us</a></li>
-								<li><a href="contact.html">Contacts</a></li>
+								<?php wp_menu_footer('primary-menu'); ?>
 							</ul>
 						</div>
 					</div>
 					<div class="col-md-6">
 						<div class="footer-widget">
 							<h3 class="footer-title">Catagories</h3>
-							<ul class="footer-links">
+							<?php wp_menu_footer('footer-menu-1'); ?>
+							<!-- <ul class="footer-links">
 								<li><a href="category.html">Web Design</a></li>
 								<li><a href="category.html">JavaScript</a></li>
 								<li><a href="category.html">Css</a></li>
 								<li><a href="category.html">Jquery</a></li>
-							</ul>
+							</ul> -->
 						</div>
 					</div>
 				</div>
@@ -57,10 +60,18 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 						</form>
 					</div>
 					<ul class="footer-social">
-						<li><a href="#"><i class="fa fa-facebook"></i></a></li>
-						<li><a href="#"><i class="fa fa-twitter"></i></a></li>
-						<li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-						<li><a href="#"><i class="fa fa-pinterest"></i></a></li>
+						<?php if($tp_options['facebook']){?>
+                            <li><a href="<?php echo $tp_options['facebook'] ?>" target="_blank"><i class="fa fa-facebook"></i></a></li>
+                        <?php } ?>
+                        <?php if($tp_options['twitter']){?>
+                            <li><a href="<?php echo $tp_options['twitter'] ?>" target="_blank"><i class="fa fa-twitter"></i></a></li>
+                        <?php } ?>
+                        <?php if($tp_options['google']){?>
+                            <li><a href="<?php echo $tp_options['google'] ?>" target="_blank"><i class="fa fa-google-plus"></i></a></li>
+                        <?php } ?>
+                        <?php if($tp_options['pinterest']){?>
+                            <li><a href="<?php echo $tp_options['pinterest'] ?>" target="_blank"><i class="fa fa-pinterest"></i></a></li>
+                        <?php } ?>
 					</ul>
 				</div>
 			</div>

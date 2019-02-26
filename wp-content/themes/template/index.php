@@ -25,7 +25,7 @@
 		<!-- row -->
 		<div class="row">
 			<div class="col-md-8">
-				<div class="row">
+				<div class="row d-flex flex-wrap">
 					<?php get_template_part('templates/recent-post-offset'); ?>
 				</div>
 			</div>
@@ -66,16 +66,16 @@
 				<div class="row">
 					<div class="col-md-12">
 						<div class="section-title">
-							<h2>Most Read</h2>
+							<h2><?php echo __('Most Read','wp'); ?></h2>
 						</div>
 					</div>
 					<?php get_template_part('templates/most-read'); ?>
 					
-					<div class="col-md-12">
+					<!-- <div class="col-md-12">
 						<div class="section-row">
-							<button class="primary-button center-block">Load More</button>
+							<button class="primary-button center-block js-load-more">Load More</button>
 						</div>
-					</div>
+					</div> -->
 				</div>
 			</div>
 
@@ -91,7 +91,7 @@
 				<!-- catagories -->
 				<div class="aside-widget">
 					<div class="section-title">
-						<h2>Catagories</h2>
+						<h2><?php echo __('Loại bài viết','wp'); ?></h2>
 					</div>
 					<div class="category-widget">
 						<ul>
@@ -140,4 +140,28 @@
 	<!-- /container -->
 </div>
 <!-- /section -->
+<!-- <script>
+	$(document).ready(function(){
+		$('.js-load-more').click(function(){
+			var id = $(this).attr('id');
+	        var url = "<?php echo esc_url(home_url('/'));?>";
+	        console.log(url);
+	        $.ajax({
+	            url: url,
+	            type: "post",
+	            dataType: "html",
+	            data: {id: id},
+	            beforeSend: function () {
+	                // $(placeholder).addClass('loading');
+	            },
+	            success: function (response) {
+	                console.log(response);
+	            },
+	            error: function (jqXHR, textStatus, errorThrown) {
+	                
+	            }
+	        });
+		});
+	})
+</script> -->
 <?php get_footer(); ?>

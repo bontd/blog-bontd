@@ -12,6 +12,14 @@
 
 /* Global Styles */
 
+.d-flex {
+	display: flex;
+}
+
+.flex-wrap {
+	flex-wrap: wrap;
+}
+
 .navbar-nav>li ul.sub-menu {
 	position: absolute;
 	background-color: #ffffff;

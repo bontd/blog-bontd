@@ -129,6 +129,30 @@ function special_nav_class ($classes, $item) {
 }
 
 /**
+Thiet lap menu footer
+**/
+if ( !function_exists('wp_menu_footer') ) {
+	function wp_menu_footer($menu) {
+		$menu = array(
+			'theme_location' => $menu,
+			'container' => 'nav',
+			'container_class' => $menu,
+			'items_wrap' => '<ul id="%1$s" class="%2$s footer-links">%3$s</ul>'
+		);
+		wp_nav_menu( $menu );
+	}
+}
+
+add_filter('nav_menu_footer_css_class' , 'special_nav_footer_class' , 10 , 2);
+
+function special_nav_footer_class ($classes, $item) {
+    if (in_array('current-menu-item', $classes) ){
+        $classes[] = 'active ';
+    }
+    return $classes;
+}
+
+/**
 Ham tao phan trang don gian
 **/
 if ( !function_exists('wp_pagination') ) {
@@ -361,7 +385,7 @@ function custom_pagination($custom_query = null, $paged = null) {
     $paged = ($paged) ? $paged : get_query_var('paged');
     $big = 999999999;
     $total = isset($main_query->max_num_pages)?$main_query->max_num_pages:'';
-    if($total > 1) echo '<div class="pagenavi">';
+    if($total > 1) echo '<div class="pagenavi pagination">';
     echo paginate_links( array(
         'base' => str_replace( $big, '%#%', esc_url( get_pagenum_link( $big ) ) ),
         'format' => '?paged=%#%',
@@ -373,4 +397,3 @@ function custom_pagination($custom_query = null, $paged = null) {
     ) );
     if($total > 1) echo '</div>';
 }
-
