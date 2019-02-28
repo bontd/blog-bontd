@@ -737,9 +737,13 @@ RESPONSIVE
  .post-author .media .media-left {
      padding-right: 40px;
 }
- .post-author .media .media-left .media-object {
+ .post-author .media .media-left .media-object,
+ .post-author .media .media-left .media-object-figure img {
      width:120px;
      border-radius: 50%;
+}
+.post-author .media .media-left .media-object-figure img {
+     height: auto;
 }
  .post-author .author-social {
      margin-top:15px;
@@ -778,10 +782,16 @@ RESPONSIVE
  .post-comments .media .media-left {
      padding-right: 15px;
 }
- .post-comments .media .media-left .media-object {
+ .post-comments .media .media-left .media-object,
+ .post-comments .media .media-left .media-object-figure img {
      width:70px;
      border-radius: 50%;
 }
+
+.post-comments .media .media-left .media-object-figure img {
+     height: auto;
+}
+
  .post-comments .media .media-body .media-heading h4 {
      text-transform: capitalize;
 }
