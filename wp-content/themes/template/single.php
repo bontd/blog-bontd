@@ -16,8 +16,15 @@
 				<div class="col-md-10">
 					<div class="post-meta">
 						<?php
+							$categories_singer = get_the_category();
+	    					$category_id = $categories_singer[0]->term_id;
+	    					$category_name = $categories_singer[0]->name;
+	    					// echo '<pre>';
+	    					// echo print_r($categories_singer);die;
 							$category_detail=get_the_category(get_the_ID());
 							foreach($category_detail as $cd){
+								$name = $cd->cat_name;
+								$link = get_category_link( $cd->term_id );
 						?>
 							<a class="post-category cat-<?php echo $cd->cat_name; ?>" href="<?php echo get_category_link( $cd->term_id ); ?> ">
 								<?php echo $cd->cat_name; ?>
@@ -40,7 +47,7 @@
 		<!-- row -->
 		<div class="row">
 			<!-- Post content -->
-			<div class="col-md-8">
+			<div class="col-md-9">
 				<div class="section-row sticky-container">
 					<div class="main-post">
 						<?php the_content(); ?>
@@ -104,7 +111,7 @@
 			<!-- /Post content -->
 
 			<!-- aside -->
-			<div class="col-md-4">
+			<div class="col-md-3">
 				<!-- ad -->
 				<div class="aside-widget text-center">
 					<a href="#" style="display: inline-block;margin: auto;">
@@ -116,7 +123,7 @@
 				<!-- post widget -->
 				<div class="aside-widget">
 					<div class="section-title">
-						<h2>Most Read</h2>
+						<h2><?php echo __('Bài viết cùng tags', 'wp'); ?></h2>
 					</div>
 					
 					<?php
@@ -125,12 +132,11 @@
 				        {
 				            $tag_ids = array();
 				            foreach($tags as $individual_tag) $tag_ids[] = $individual_tag->term_id;
-							// lấy danh sách các tag liên quan
 				            $args=array(
-				            'tag__in' => $tag_ids,
-				            'post__not_in' => array(get_the_ID()),
-				            'showposts'=>4,
-				            'caller_get_posts'=>1
+					            'tag__in' => $tag_ids,
+					            'post__not_in' => array(get_the_ID()),
+					            'showposts'=>4,
+					            'caller_get_posts'=>1
 				            );
 				            $my_query = new wp_query($args);
 				            if( $my_query->have_posts() ) 
@@ -162,29 +168,33 @@
 				<!-- post widget -->
 				<div class="aside-widget">
 					<div class="section-title">
-						<h2>Featured Posts</h2>
+						<h2><?php echo __('Bài viết cùng thể loại', 'wp'); ?></h2>
 					</div>
-					<div class="post post-thumb">
-						<a class="post-img" href="blog-post.html"><img src="<?php echo esc_url(home_url('/'));?>/wp-content/themes/template/assets/img/post-2.jpg" alt=""></a>
-						<div class="post-body">
-							<div class="post-meta">
-								<a class="post-category cat-3" href="#">Jquery</a>
-								<span class="post-date">March 27, 2018</span>
-							</div>
-							<h3 class="post-title"><a href="blog-post.html">Ask HN: Does Anybody Still Use JQuery?</a></h3>
-						</div>
-					</div>
-
-					<div class="post post-thumb">
-						<a class="post-img" href="blog-post.html"><img src="<?php echo esc_url(home_url('/'));?>/wp-content/themes/template/assets/img/post-1.jpg" alt=""></a>
-						<div class="post-body">
-							<div class="post-meta">
-								<a class="post-category cat-2" href="#">JavaScript</a>
-								<span class="post-date">March 27, 2018</span>
-							</div>
-							<h3 class="post-title"><a href="blog-post.html">Chrome Extension Protects Against JavaScript-Based CPU Side-Channel Attacks</a></h3>
-						</div>
-					</div>
+					<?php
+						$args=array(
+							'cat' => $category_id,
+							'post__not_in' => array(get_the_ID()),
+							'showposts'=>2, // Số bài viết bạn muốn hiển thị.
+							'caller_get_posts'=>1
+						);
+						$my_query = new wp_query($args);
+						if( $my_query->have_posts() ) { while ($my_query->have_posts()){ $my_query->the_post();?>
+								<div class="post post-thumb">
+									<a class="post-img" href="<?php the_permalink(); ?>"><?php the_post_thumbnail(); ?></a>
+									<div class="post-body">
+										<div class="post-meta">
+											<a class="post-category cat-<?php echo $category_name; ?>" href="<?php echo get_category_link( $category_id ); ?> ">
+												<?php echo $category_name; ?>
+											</a>
+											<span class="post-date"><?php echo get_the_date( 'Y.m.d' ); ?></span>
+										</div>
+										<h3 class="post-title"><a href="<?php the_permalink() ?>"><?php the_title(); ?></a></h3>
+									</div>
+								</div>
+								<?php
+							}
+						}
+					?>
 				</div>
 				<!-- /post widget -->
 				
