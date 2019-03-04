@@ -8,6 +8,11 @@
 						<li><a href="index.html">Home</a></li>
 						<li>JavaScript</li>
 					</ul>
+					<?php 
+						$tags = get_tags(); 
+						echo '<pre>';
+    					echo print_r($tags);die;
+					?>
 					<h1>JavaScript</h1>
 				</div>
 			</div>

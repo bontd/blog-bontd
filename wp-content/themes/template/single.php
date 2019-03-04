@@ -73,22 +73,35 @@
 				<!-- author -->
 				<div class="section-row">
 					<div class="post-author">
-						<div class="media">
-							<div class="media-left">
+						<div class="media" style="display: flex;">
+							<div class="media-left" style="display: inline-block;">
 								<div class="media-object-figure">
 									<?php echo get_avatar( get_the_author_meta('user_email')); ?>
 								</div>
 							</div>
-							<div class="media-body">
+							<div class="media-body" style="flex: 1">
 								<div class="media-heading">
-									<h3><?php the_author(); ?></h3>
+									<h3><?php the_author_nickname(); ?></h3>
 								</div>
-								<p><?php the_author_description(); ?></p>
+								<p>
+									<?php
+										$description = get_the_author_description();
+										echo str_replace("/","<br>",$description);
+									?>
+								</p>
 								<ul class="author-social">
-									<li><a href="#"><i class="fa fa-facebook"></i></a></li>
-									<li><a href="#"><i class="fa fa-twitter"></i></a></li>
-									<li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-									<li><a href="#"><i class="fa fa-instagram"></i></a></li>
+									<?php if($tp_options['facebook']){?>
+			                            <li><a href="<?php echo $tp_options['facebook'] ?>" target="_blank"><i class="fa fa-facebook"></i></a></li>
+			                        <?php } ?>
+			                        <?php if($tp_options['twitter']){?>
+			                            <li><a href="<?php echo $tp_options['twitter'] ?>" target="_blank"><i class="fa fa-twitter"></i></a></li>
+			                        <?php } ?>
+			                        <?php if($tp_options['google']){?>
+			                            <li><a href="<?php echo $tp_options['google'] ?>" target="_blank"><i class="fa fa-google-plus"></i></a></li>
+			                        <?php } ?>
+			                        <?php if($tp_options['pinterest']){?>
+			                            <li><a href="<?php echo $tp_options['pinterest'] ?>" target="_blank"><i class="fa fa-pinterest"></i></a></li>
+			                        <?php } ?>
 								</ul>
 							</div>
 						</div>
@@ -98,12 +111,8 @@
 
 				<!-- comments -->
 				<div class="section-row">
-					<div class="section-title">
-						<h2>3 Comments</h2>
-					</div>
-
 					<div class="post-comments">
-						
+						<div class="fb-comments" xid="<?php the_ID(); ?> data-width="100%" data-numposts="10"></div>
 					</div>
 				</div>
 				<!-- /comments -->

@@ -7,8 +7,12 @@
     <link rel="profile" href="http://gmgp.org/xfn/11" />
     <link rel="pingback" href="<?php bloginfo('pingback_url'); ?>" />
     <?php wp_head(); ?>
+    <meta property="fb:app_id" content="649900938775361" />
+    <meta property="fb:admins" content="100004016054312"/>
 </head>
 <body <?php body_class(); ?> >
+    <div id="fb-root"></div>
+    <script async defer src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v3.2&appId=649900938775361&autoLogAppEvents=1"></script>
     <?php
         global $tp_options;
     ?>

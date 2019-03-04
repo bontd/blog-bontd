@@ -11,6 +11,9 @@
  */
 
 /* Global Styles */
+img {
+	max-width: 100%;
+}
 
 .d-flex {
 	display: flex;

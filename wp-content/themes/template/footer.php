@@ -1,3 +1,6 @@
+<?php
+    global $tp_options;
+?>
 <!-- Footer -->
 <footer id="footer">
 	<!-- container -->
@@ -7,19 +10,27 @@
 			<div class="col-md-5">
 				<div class="footer-widget">
 					<div class="footer-logo">
-						<a href="index.html" class="logo"><img src="wp-content/themes/template/assets/img/logo.png" alt=""></a>
+						<a href="<?php echo esc_url(home_url('/'));?>" class="logo">
+							<img src="<?php
+		                        if($tp_options['logo-on'] == 1) {
+		                        	echo $tp_options['logo-image']['url'];
+		                        }else {
+									echo esc_url(home_url('/')).'wp-content/themes/template/assets/img/logo.png';
+								} ?>" 
+							alt="<?php echo __('logo','wp'); ?>">
+						</a>
 					</div>
 					<ul class="footer-nav">
-						<li><a href="#">Privacy Policy</a></li>
-						<li><a href="#">Advertisement</a></li>
+						<li><a href="#"><?php echo __('Privacy Policy','wp'); ?></a></li>
+						<li><a href="#"><?php echo __('Advertisement','wp'); ?></a></li>
 					</ul>
 					<div class="footer-copyright">
-						<span>&copy; Copyright &copy;
+						<span>
+							&copy; Copyright &copy;
 							<script>document.write(new Date().getFullYear());</script>
 							All rights reserved | This template is made with 
 							<i class="fa fa-heart-o" aria-hidden="true"></i> 
-							by 
-							<a href="https://colorlib.com" target="_blank">Colorlib</a>
+							by WebBTD
 						</span>
 					</div>
 				</div>
@@ -29,7 +40,7 @@
 				<div class="row">
 					<div class="col-md-6">
 						<div class="footer-widget">
-							<h3 class="footer-title">About Us</h3>
+							<h3 class="footer-title"><?php echo __('About Us', 'wp'); ?></h3>
 							<ul class="footer-links">
 								<?php wp_menu_footer('primary-menu'); ?>
 							</ul>
@@ -37,14 +48,8 @@
 					</div>
 					<div class="col-md-6">
 						<div class="footer-widget">
-							<h3 class="footer-title">Catagories</h3>
-							<?php wp_menu_footer('footer-menu-1'); ?>
-							<!-- <ul class="footer-links">
-								<li><a href="category.html">Web Design</a></li>
-								<li><a href="category.html">JavaScript</a></li>
-								<li><a href="category.html">Css</a></li>
-								<li><a href="category.html">Jquery</a></li>
-							</ul> -->
+							<h3 class="footer-title"><?php echo __('Catagories', 'wp'); ?></h3>
+							<?php wp_menu_footer('primary-menu'); ?>
 						</div>
 					</div>
 				</div>
@@ -52,7 +57,7 @@
 
 			<div class="col-md-3">
 				<div class="footer-widget">
-					<h3 class="footer-title">Join our Newsletter</h3>
+					<h3 class="footer-title"><?php echo __('Join our Newsletter','wp'); ?></h3>
 					<div class="footer-newsletter">
 						<form>
 							<input class="input" type="email" name="newsletter" placeholder="Enter your email">
