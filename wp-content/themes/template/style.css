@@ -42,6 +42,54 @@ img {
 	display: inline-block;
 }
 
+@media (max-width: 767px) {
+  .table-responsive,
+  .table-responsive thead,
+  .table-responsive tbody,
+  .table-responsive th,
+  .table-responsive td,
+  .table-responsive tr {
+    display: block;
+  }
+  .table-responsive > thead > tr {
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
+  }
+  .table-responsive > tbody > tr {
+    border-top: 1px solid #ccc;
+  }
+  .table-responsive > tbody > tr:first-child {
+    border-radius: 3px 3px 0 0;
+    border-top: none;
+  }
+  .table-responsive > tbody > tr:last-child {
+    border-radius: 0 0 3px 3px;
+    border-bottom: none;
+  }
+  .table-responsive > tbody > tr td {
+    border: none;
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    display: flex;
+  }
+  .table-responsive > tbody > tr td:before {
+    content: attr(data-title);
+    width: 25%;
+    padding-right: 10px;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+  }
+  .table-responsive > tbody > tr td>div {
+  	flex: 1;
+  }
+  .table-responsive > tbody > tr td:first-child {
+    text-align: left;
+  }
+}
+
 @media (max-width: 414px) {
 	.sticky-container {
 		padding-left: 0;
