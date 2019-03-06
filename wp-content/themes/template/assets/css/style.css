@@ -127,7 +127,8 @@ RESPONSIVE
      height: 90px;
      padding: 15px;
 }
- .primary-button {
+ .primary-button,
+ .load_more a {
      padding: 9px 45px;
      border: none;
      background-color: #212631;
@@ -138,9 +139,13 @@ RESPONSIVE
      -webkit-transition: 0.2s opacity;
      transition: 0.2s opacity;
 }
- .primary-button:hover,.primary-button:focus {
+ .primary-button:hover,
+ .primary-button:focus,
+ .load_more a:hover,
+ .load_more a:focus {
      color: #fff;
      opacity: 0.9;
+     text-decoration: none;
 }
  .section {
      padding-top: 40px;

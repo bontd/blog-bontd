@@ -126,7 +126,7 @@
 					
 					<div class="col-md-12">
 						<div class="section-row">
-							<button class="primary-button center-block">Load More</button>
+							<?php custom_pagination(); ?>
 						</div>
 					</div>
 				</div>

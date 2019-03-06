@@ -52,17 +52,18 @@
 		<!-- row -->
 		<div class="row">
 			<div class="col-md-8">
-				<div class="row">
+				<div class="row" id="posts">
 					<?php
 						$array1 = array_slice($wp_query->posts, 0, 1);
 						$array2 = array_slice($wp_query->posts, 1, 2);
 						$array3 = array_slice($wp_query->posts, 3, 10);
+						// $array4 = array_slice($wp_query->posts, 0, 100);
 						// echo '<pre>';
-						// echo print_r($array1);exit;
+						// echo print_r($array3);exit;
 					?>
 					<?php foreach($array1 as $value) {?>
 					<!-- post -->
-					<div class="col-md-12">
+					<div class="col-md-12 clone">
 						<div class="post post-thumb">
 							<a class="post-img" href="<?php echo get_post_permalink($value->ID); ?>"><?php echo get_the_post_thumbnail($value->ID);?></a>
 							<div class="post-body">
@@ -86,7 +87,7 @@
 
 		            <?php foreach($array2 as $value) {?>
 					<!-- post -->
-					<div class="col-md-6">
+					<div class="col-md-6 clone">
 						<div class="post post-thumb">
 							<a class="post-img" href="<?php echo get_post_permalink($value->ID); ?>"><?php echo get_the_post_thumbnail($value->ID);?></a>
 							<div class="post-body">
@@ -121,7 +122,7 @@
 					<!-- ad -->
 					<?php foreach ($array3 as $value) { ?>
 						<!-- post -->
-						<div class="col-md-12">
+						<div class="col-md-12 clone">
 							<div class="post post-row">
 								<a class="post-img" href="<?php echo get_post_permalink($value->ID); ?>"><?php echo get_the_post_thumbnail($value->ID);?></a>
 								<div class="post-body">
@@ -143,10 +144,27 @@
 						</div>
 						<!-- /post -->
 					<?php } ?>
-					
+				</div>
+				<div class="row">
 					<div class="col-md-12">
-						<div class="section-row">
-							<button class="primary-button center-block">Load More</button>
+						<div class="section-row load_more text-center">
+							<?php if ( $wp_query->max_num_pages > 1 ) : ?>
+								<?php next_posts_link( 'Load More' ); ?>
+								<script type="text/javascript">
+									jQuery(document).ready(function(){
+										jQuery('.load_more a').on('click', function(e){
+											e.preventDefault();
+											var link = jQuery(this).attr('href');
+											jQuery('.load_more').html('<span class="loader">Loading More Posts...</span>');
+											$.get(link, function(data) {
+												var post = $("#posts .clone ", data);
+												$('#posts').append(post);
+											});
+											jQuery('.load_more').load(link+' .load_more a');
+										});
+									});
+								</script>
+							<?php endif;  ?>
 						</div>
 					</div>
 				</div>
