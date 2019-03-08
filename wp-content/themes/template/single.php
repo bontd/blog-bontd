@@ -165,7 +165,7 @@
 										<div class="post-body">
 											<h3 class="post-title">
 												<a href="<?php the_permalink() ?>" title="<?php the_title(); ?>">
-													<?php the_title(); ?>
+													<?php echo wp_trim_words(get_the_title(),10); ?>
 												</a>
 											</h3>
 										</div>

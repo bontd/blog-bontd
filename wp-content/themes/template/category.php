@@ -31,7 +31,7 @@
 		<!-- row -->
 		<div class="row">
 			<div class="col-md-8">
-				<div class="row">
+				<div class="row" id="posts">
 					<?php
 						$get_post = new WP_Query(array(
 						 'post_type'=>'post',
@@ -42,7 +42,7 @@
 					?>
 					<?php while ($get_post->have_posts()) : $get_post->the_post(); ?>
 						<!-- post -->
-						<div class="col-md-12">
+						<div class="col-md-12 clone">
 							<div class="post post-thumb">
 								<a class="post-img" href="<?php echo esc_url( get_permalink() ); ?>"><?php echo the_post_thumbnail();?></a>
 								<div class="post-body">
@@ -69,7 +69,7 @@
 					?>
 					<?php while ($get_post->have_posts()) : $get_post->the_post(); ?>
 					<!-- post -->
-					<div class="col-md-6">
+					<div class="col-md-6 clone">
 						<div class="post">
 							<a class="post-img" href="<?php echo esc_url( get_permalink() ); ?>"><?php echo the_post_thumbnail();?></a>
 							<div class="post-body">
@@ -108,7 +108,7 @@
 					?>
 					<?php while ($get_post->have_posts()) : $get_post->the_post(); ?>
 					<!-- post -->
-					<div class="col-md-12">
+					<div class="col-md-12 clone">
 						<div class="post post-row">
 							<a class="post-img" href="<?php echo esc_url( get_permalink() ); ?>"><?php echo the_post_thumbnail();?></a>
 							<div class="post-body">
@@ -123,10 +123,27 @@
 					</div>
 					<!-- /post -->
 					<?php endwhile ; wp_reset_query() ;?>
-					
+				</div>
+				<div class="row">
 					<div class="col-md-12">
-						<div class="section-row">
-							<?php custom_pagination(); ?>
+						<div class="section-row load_more text-center">
+							<?php if ( $wp_query->max_num_pages > 1 ) : ?>
+								<?php next_posts_link( 'Load More' ); ?>
+								<script type="text/javascript">
+									$(document).ready(function(){
+										$('.load_more a').on('click', function(e){
+											e.preventDefault();
+											var link = $(this).attr('href');
+											$('.load_more').html('<span class="loader">Loading More Posts...</span>');
+											$.get(link, function(data) {
+												var post = $("#posts .clone ", data);
+												$('#posts').append(post);
+											});
+											$('.load_more').load(link+' .load_more a');
+										});
+									});
+								</script>
+							<?php endif; ?>
 						</div>
 					</div>
 				</div>
