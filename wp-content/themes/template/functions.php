@@ -53,6 +53,8 @@ if ( !function_exists('wp_theme_setup') ) {
 
 		/* Them menu */
 		register_nav_menu( 'primary-menu', __('Primary Menu', 'wp') );
+		register_nav_menu( 'about-menu', __('About Menu', 'wp') );
+		register_nav_menu( 'footer-menu', __('Footer Menu', 'wp') );
 
 		/* Tao sidebar */
 		$sidebar = array(

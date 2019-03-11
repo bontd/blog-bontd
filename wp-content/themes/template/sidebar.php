@@ -2,7 +2,7 @@
 	<!-- post widget -->
 	<div class="aside-widget">
 		<div class="section-title">
-			<h2>Bài viết xem nhiều</h2>
+			<h2><?php echo __('Bài viết xem nhiều', 'wp'); ?></h2>
 		</div>
 		<?php 
 			$popularpost = new WP_Query( array( 
@@ -18,7 +18,7 @@
 			<div class="post post-widget">
 				<a class="post-img" href="<?php echo esc_url( get_permalink() ); ?>"><?php echo the_post_thumbnail();?></a>
 				<div class="post-body">
-					<h3 class="post-title"><a href="<?php echo esc_url( get_permalink() ); ?>"><?php the_title(); ?></a></h3>
+					<h3 class="post-title"><a href="<?php echo esc_url( get_permalink() ); ?>"><?php echo wp_trim_words(get_the_title(),10); ?></a></h3>
 				</div>
 			</div>
 		<?php
@@ -30,7 +30,7 @@
 	<!-- post widget -->
 	<div class="aside-widget">
 		<div class="section-title">
-			<h2>Featured Posts</h2>
+			<h2><?php echo __('bài viết khác', 'wp'); ?></h2>
 		</div>
 		<?php 
 			$viewport = new WP_Query( array(

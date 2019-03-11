@@ -41,15 +41,13 @@
 					<div class="col-md-6">
 						<div class="footer-widget">
 							<h3 class="footer-title"><?php echo __('About Us', 'wp'); ?></h3>
-							<ul class="footer-links">
-								<?php wp_menu_footer('primary-menu'); ?>
-							</ul>
+							<?php wp_menu_footer('about-menu'); ?>
 						</div>
 					</div>
 					<div class="col-md-6">
 						<div class="footer-widget">
 							<h3 class="footer-title"><?php echo __('Catagories', 'wp'); ?></h3>
-							<?php wp_menu_footer('primary-menu'); ?>
+							<?php wp_menu_footer('footer-menu'); ?>
 						</div>
 					</div>
 				</div>

@@ -1,29 +1,50 @@
 <?php get_header(); ?>
-<div id="area-contents" class="area noskin" style="margin-top:100px;padding: 100px 0;text-align:center;">
-    <div class="wrap">
-        <div class="atl"></div>
-        <div class="atr"></div>
-        <div class="atc"></div>
-        <div class="amm">
-            <div class="aml"></div>
-            <div class="amr"></div>
-            <div class="amc">
-				<?php
-					_e('<h2>404 NOT FOUND</h2>', 'Error');
-					_e('<p>The article you were looking for was not found, but maybe try looking again!', 'Error');
-					// get_search_form();
-
-					// _e('<h3>Content categories: </h3>', 'Error');
-					// echo '<div class="404-cat-list">';
-					// 	wp_list_categories( array( 'title_li' => '' ) );
-					// echo '</div>';
-
-					// _e('Tag Cloud', 'Error');
-					// wp_tag_cloud();
-				?>
+<!-- Page Header -->
+	<div id="post-header" class="page-header">
+		<div class="background-img" style="background-image: url('<?php echo esc_url(home_url('/'));?>/wp-content/themes/template/assets/img/post-page.jpg');"></div>
+		<div class="container">
+			<div class="row">
+				<div class="col-md-10">
+				</div>
 			</div>
 		</div>
-	
 	</div>
+	<!-- /Page Header -->
+</header>
+<!-- /Header -->
+<!-- section -->
+<div class="section">
+	<!-- container -->
+	<div class="container">
+		<!-- row -->
+		<div class="row">
+			<!-- Post content -->
+			<div class="col-md-12">
+				<div class="section-row sticky-container p-0">
+					<div class="main-post">
+						<?php
+							_e('<h2 class="text-center">404 NOT FOUND</h2>', 'Error');
+							_e('<p class="text-center">The article you were looking for was not found, but maybe try looking again!', 'Error');
+						?>
+					</div>
+				</div>
+
+				<!-- ad -->
+				<div class="section-row text-center">
+					<a href="#" style="display: inline-block;margin: auto;">
+						<img class="img-responsive" src="<?php echo esc_url(home_url('/'));?>/wp-content/themes/template/assets/img/ad-2.jpg" alt="">
+					</a>
+				</div>
+				<!-- ad -->
+			</div>
+			<!-- /Post content -->
+
+			<!-- aside -->
+			<!-- /aside -->
+		</div>
+		<!-- /row -->
+	</div>
+	<!-- /container -->
 </div>
+<!-- /section -->
 <?php get_footer(); ?>

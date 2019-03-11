@@ -56,7 +56,7 @@
             <div id="nav-aside">
                 <!-- nav -->
                 <div class="section-row nav-aside-menu">
-                    <?php wp_menu('primary-menu'); ?>
+                    <?php wp_menu_footer('about-menu'); ?>
                 </div>
                 <!-- /nav -->
                 <!-- widget posts -->
@@ -77,7 +77,7 @@
                             </a>
                             <div class="post-body">
                                 <h3 class="post-title">
-                                    <a href="<?php echo esc_url( get_permalink() ); ?>"><?php the_title();?></a>
+                                    <a href="<?php echo esc_url( get_permalink() ); ?>"><?php echo wp_trim_words(get_the_title(),10); ?></a>
                                 </h3>
                             </div>
                         </div>

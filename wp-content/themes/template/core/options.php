@@ -111,6 +111,160 @@
                 );
 
                 $this->sections[] = array(
+                    'title'  => __( 'PROFILE', 'wp' ),
+                    'desc'   => __( 'Profle admin.', 'wp' ),
+                    'icon'   => 'el el-address-book',
+
+                    'fields' => array(
+                        array(
+                            'id'       => 'name-profile',
+                            'type'     => 'text',
+                            'title'    => __( 'Name', 'wp' ),
+                        ),
+                        array(
+                            'id'       => 'position-profile',
+                            'type'     => 'text',
+                            'title'    => __( 'Job', 'wp' ),
+                        ),
+                        array(
+                            'id'       => 'description-profile',
+                            'type'     => 'editor',
+                            'title'    => __( 'Description', 'wp' ),
+                        ),
+                        array(
+                            'id'       => 'age-profile',
+                            'type'     => 'text',
+                            'title'    => __( 'Age', 'wp' ),
+                        ),
+                        array(
+                            'id'       => 'nationality-profile',
+                            'type'     => 'text',
+                            'title'    => __( 'Nationality', 'wp' ),
+                        ),
+                        array(
+                            'id'       => 'address-profile',
+                            'type'     => 'text',
+                            'title'    => __( 'Address', 'wp' ),
+                        ),
+                        array(
+                            'id'       => 'phone-profile',
+                            'type'     => 'text',
+                            'title'    => __( 'Phone', 'wp' ),
+                        ),
+                        array(
+                            'id'       => 'skype-profile',
+                            'type'     => 'text',
+                            'title'    => __( 'Skype', 'wp' ),
+                        ),
+                        array(
+                            'id'       => 'email-profile',
+                            'type'     => 'text',
+                            'title'    => __( 'Email', 'wp' ),
+                        ),
+                        array(
+                            'id'       => 'website-profile',
+                            'type'     => 'text',
+                            'title'    => __( 'Website', 'wp' ),
+                        ),
+                        array(
+                            'id'       => 'title-skills-profile',
+                            'type'     => 'text',
+                            'title'    => __( 'title skill', 'wp' ),
+                        ),
+                        array(
+                            'id'       => 'descript-skills-profile',
+                            'type'     => 'editor',
+                            'title'    => __( 'description skill', 'wp' ),
+                        ),
+                        array(
+                            'id'       => 'title-skill-1',
+                            'type'     => 'text',
+                            'title'    => __( 'title skill', 'wp' ),
+                        ),
+                        array(
+                            'id'       => 'value-skill-1',
+                            'type'     => 'text',
+                            'title'    => __( 'value skill', 'wp' ),
+                        ),
+                        array(
+                            'id'       => 'title-skill-2',
+                            'type'     => 'text',
+                            'title'    => __( 'title skill 1', 'wp' ),
+                        ),
+                        array(
+                            'id'       => 'value-skill-2',
+                            'type'     => 'text',
+                            'title'    => __( 'value skill', 'wp' ),
+                        ),
+                        array(
+                            'id'       => 'title-skill-3',
+                            'type'     => 'text',
+                            'title'    => __( 'title skill', 'wp' ),
+                        ),
+                        array(
+                            'id'       => 'value-skill-3',
+                            'type'     => 'text',
+                            'title'    => __( 'value skill', 'wp' ),
+                        ),
+                        array(
+                            'id'       => 'title-skill-4',
+                            'type'     => 'text',
+                            'title'    => __( 'title skill', 'wp' ),
+                        ),
+                        array(
+                            'id'       => 'value-skill-4',
+                            'type'     => 'text',
+                            'title'    => __( 'value skill', 'wp' ),
+                        ),
+                        array(
+                            'id'       => 'title-skill-5',
+                            'type'     => 'text',
+                            'title'    => __( 'title skill', 'wp' ),
+                        ),
+                        array(
+                            'id'       => 'value-skill-5',
+                            'type'     => 'text',
+                            'title'    => __( 'value skill', 'wp' ),
+                        ),
+                        array(
+                            'id'       => 'title-skill-6',
+                            'type'     => 'text',
+                            'title'    => __( 'title skill', 'wp' ),
+                        ),
+                        array(
+                            'id'       => 'value-skill-6',
+                            'type'     => 'text',
+                            'title'    => __( 'value skill', 'wp' ),
+                        ),
+                        array(
+                            'id'       => 'title-skill-7',
+                            'type'     => 'text',
+                            'title'    => __( 'title skill', 'wp' ),
+                        ),
+                        array(
+                            'id'       => 'value-skill-7',
+                            'type'     => 'text',
+                            'title'    => __( 'value skill', 'wp' ),
+                        ),
+                        array(
+                            'id'       => 'title-skill-8',
+                            'type'     => 'text',
+                            'title'    => __( 'title skill', 'wp' ),
+                        ),
+                        array(
+                            'id'       => 'value-skill-8',
+                            'type'     => 'text',
+                            'title'    => __( 'value skill', 'wp' ),
+                        ),
+                        array(
+                            'id'       => 'education',
+                            'type'     => 'editor',
+                            'title'    => __( 'Education', 'wp' ),
+                        ),
+                    )
+                );
+
+                $this->sections[] = array(
                     'title'  => __( 'Typography', 'wp' ),
                     'desc'   => __( 'All of typography settings.', 'wp' ),
                     'icon'   => 'el el-icon-font',

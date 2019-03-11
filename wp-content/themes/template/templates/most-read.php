@@ -1,9 +1,10 @@
 <?php
 	$get_post = new WP_Query(array(
 		'post_type'			=>'post',
-		'order' 			=> 'DESC',
-		'posts_per_page'	=> 3,
-		'offset'            => 21,
+		'meta_key'			=> 'wpb_post_views_count', 
+		'orderby' 			=> 'meta_value_num', 
+		'order' 			=> 'DESC',  
+		'posts_per_page'	=> 5,
 	));
 ?>
 <?php while ($get_post->have_posts()) : $get_post->the_post(); ?>

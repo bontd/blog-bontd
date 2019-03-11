@@ -59,10 +59,10 @@
 						<a href="https://twitter.com/intent/tweet?url=<?php echo esc_url( get_permalink() ); ?>" target="_blank" class="share-twitter">
 							<i class="fa fa-twitter"></i>
 						</a>
-						<a href="#" class="share-google-plus"><i class="fa fa-google-plus"></i></a>
+						<!-- <a href="#" class="share-google-plus"><i class="fa fa-google-plus"></i></a>
 						<a href="#" class="share-pinterest"><i class="fa fa-pinterest"></i></a>
 						<a href="#" class="share-linkedin"><i class="fa fa-linkedin"></i></a>
-						<a href="#"><i class="fa fa-envelope"></i></a>
+						<a href="#"><i class="fa fa-envelope"></i></a> -->
 					</div>
 				</div>
 
@@ -256,21 +256,6 @@
 					</div>
 				</div>
 				<!-- /tags -->
-				
-				<!-- archive -->
-				<div class="aside-widget">
-					<div class="section-title">
-						<h2>Archive</h2>
-					</div>
-					<div class="archive-widget">
-						<ul>
-							<li><a href="#">January 2018</a></li>
-							<li><a href="#">Febuary 2018</a></li>
-							<li><a href="#">March 2018</a></li>
-						</ul>
-					</div>
-				</div>
-				<!-- /archive -->
 			</div>
 			<!-- /aside -->
 		</div>
