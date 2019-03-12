@@ -300,8 +300,8 @@ add_action('wp_enqueue_scripts', 'wp_style');
 // {
 
 //     $label = array(
-//         'name' => 'QA',
-//         'singular_name' => 'Question'
+//         'name' => 'project',
+//         'singular_name' => 'Project'
 //     );
 
 //     /*
@@ -309,7 +309,7 @@ add_action('wp_enqueue_scripts', 'wp_style');
 //      */
 //     $args = array(
 //         'labels' => $label,
-//         'description' => 'Post type Question',
+//         'description' => 'Post type Project',
 //         'supports' => array(
 //             'title',
 //             'editor',
@@ -338,10 +338,35 @@ add_action('wp_enqueue_scripts', 'wp_style');
 //         'supports' => array('title')
 //     );
 
-//     register_post_type('question', $args);
+//     register_post_type('project', $args);
 
 // }
 // add_action('init', 'tao_custom_post_type');
+
+// create post topic
+add_action('init', 'create_post_type');
+ 
+function create_post_type() {
+    register_post_type('project', array(
+            'labels' => array(
+                'name' => __('Project'),
+                'singular_name' => __('Project'),
+            ),
+            'public' => true,
+            'has_archive' => true,
+            'publicly_queryable' => true,
+			'show_ui'            => true,
+			'show_in_menu'       => true,
+			'query_var'          => true,
+			'rewrite'            => array( 'slug' => 'book' ),
+			'capability_type'    => 'post',
+			'has_archive'        => true,
+			'hierarchical'       => false,
+			'menu_position'      => null,
+            'supports'           => array( 'title', 'editor', 'author', 'thumbnail', 'excerpt', 'comments' ),
+        )
+    );
+}
 
 function wpb_set_post_views($postID) {
     $count_key = 'wpb_post_views_count';

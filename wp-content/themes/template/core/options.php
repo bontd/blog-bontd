@@ -174,12 +174,22 @@
                         array(
                             'id'       => 'title-skills-profile',
                             'type'     => 'text',
-                            'title'    => __( 'title skill', 'wp' ),
+                            'title'    => __( 'title skill web', 'wp' ),
                         ),
                         array(
                             'id'       => 'descript-skills-profile',
                             'type'     => 'editor',
-                            'title'    => __( 'description skill', 'wp' ),
+                            'title'    => __( 'description skill web', 'wp' ),
+                        ),
+                        array(
+                            'id'       => 'title-skills-design-profile',
+                            'type'     => 'text',
+                            'title'    => __( 'title skill design', 'wp' ),
+                        ),
+                        array(
+                            'id'       => 'descript-skills-design-profile',
+                            'type'     => 'editor',
+                            'title'    => __( 'description skill design', 'wp' ),
                         ),
                         array(
                             'id'       => 'title-skill-1',
