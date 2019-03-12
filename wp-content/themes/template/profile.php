@@ -4,6 +4,8 @@
     */
     get_header();
     global $tp_options;
+    // echo '<pre>';
+    // echo print_r($tp_options);die;
 ?>
 <link href="<?php echo esc_url(home_url('/'));?>wp-content/themes/template/assets/profile/vendors/material-icon/css/materialdesignicons.min.css" rel="stylesheet">
 <link href="<?php echo esc_url(home_url('/'));?>wp-content/themes/template/assets/profile/css/font-awesome.min.css" rel="stylesheet">

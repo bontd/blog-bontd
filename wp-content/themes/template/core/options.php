@@ -117,6 +117,11 @@
 
                     'fields' => array(
                         array(
+                            'id'       => 'file-profile',
+                            'type'     => 'media',
+                            'title'    => __( 'File download', 'wp' ),
+                        ),
+                        array(
                             'id'       => 'name-profile',
                             'type'     => 'text',
                             'title'    => __( 'Name', 'wp' ),
