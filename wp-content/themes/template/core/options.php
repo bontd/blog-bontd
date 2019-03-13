@@ -78,6 +78,32 @@
                 );
 
                 $this->sections[] = array(
+                    'title'  => __( 'Header', 'wp' ),
+                    'desc'   => __( 'All of setings for header on this theme.', 'wp' ),
+                    'icon'   => '',
+                    // 'submenu' => false, // Setting submenu to false on a given section will hide it from the WordPress sidebar menu!
+                    'fields' => array(
+
+                        array(
+                            'id'       => 'avatar-on',
+                            'type'     => 'switch',
+                            'title'    => __( 'Enable Image Logo', 'wp' ),
+                            'compiler' => 'bool',
+                            // Can be set to false to allow any media type, or can also be set to any mime type.
+                            'desc'     => __( 'Do you want to enable image logo?', 'wp' ),
+                            'on'        => __('Enabled', 'wp'),
+                            'off'       => __('Disabled', 'wp')
+                        ),
+                        array(
+                            'id'    => 'avatar-image',
+                            'type'  => 'media',
+                            'title' => __('Logo Image', 'wp'),
+                            'desc'  => __('Image that you want to use as logo.', 'wp')
+                        ),
+                    )
+                );
+
+                $this->sections[] = array(
                     'title'  => __( 'SNS', 'wp' ),
                     'desc'   => __( 'Link mạng xã hội.', 'wp' ),
                     'icon'   => 'el el-facebook',

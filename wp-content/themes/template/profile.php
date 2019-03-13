@@ -31,8 +31,15 @@
             <div class="row">
                 <div class="col-md-5">
                     <div class="person_img text-center">
-                        <img src="<?php echo esc_url(home_url('/'));?>wp-content/themes/template/assets/img/avatar.jpg" alt="">
-                        <a class="download_btn" href="#"><span>Download Resume</span></a>
+                        <?php
+                            if($tp_options['avatar-on'] == 1) {
+                        ?>
+                            <img src="<?php echo $tp_options['avatar-image']['url']; ?>">
+                        <?php }else { ?>
+                            <img src="<?php echo esc_url(home_url('/'));?>wp-content/themes/template/assets/img/avatar.jpg" alt="">
+                        <?php } ?>
+
+                        <!-- <a class="download_btn" href="#"><span>Download Resume</span></a> -->
                     </div>
                 </div>
                 <div class="col-md-7">
@@ -129,7 +136,7 @@
         </section>
         <section class="portfolio_area pad" id="portfolio">
             <div class="main_title">
-                <h2>Portfolio</h2>
+                <h2>Project Detail</h2>
             </div>
             <div class="porfolio_menu">
                 <ul class="causes_filter">
@@ -139,74 +146,28 @@
                     <li data-filter=".webview"><a href="">Webview</a></li>
                 </ul>
             </div>
-            <div class="row">
+            <div class="row mb-3">
                 <div class="portfolio_list_inner">
-                    <div class="col-md-4 photo marketing">
-                        <div class="portfolio_item">
-                            <div class="portfolio_img">
-                                <img src="<?php echo esc_url(home_url('/'));?>wp-content/themes/template/assets/profile/img/portfolio/portfolio-1.png" alt="">
-                            </div>
-                            <div class="portfolio_title">
-                                <a href="#"><h4>Dreams visualization</h4></a>
-                                <h5>Photography</h5>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4 design">
-                        <div class="portfolio_item">
-                            <div class="portfolio_img">
-                                <img src="<?php echo esc_url(home_url('/'));?>wp-content/themes/template/assets/profile/img/portfolio/portfolio-2.png" alt="">
-                            </div>
-                            <div class="portfolio_title">
-                                <a href="#"><h4>Dreams visualization</h4></a>
-                                <h5>Photography</h5>
+                    <?php
+                        $get_post = new WP_Query(array(
+                        'post_type'=>'project',
+                        'order' => 'DESC',
+                        'posts_per_page'=> 20));
+                    ?>
+                    <?php while ($get_post->have_posts()) : $get_post->the_post(); ?>
+                        <div class="col-md-4 <?php echo get_field('option_type'); ?>">
+                            <div class="portfolio_item">
+                                <div class="portfolio_img">
+                                    <?php echo the_post_thumbnail();?>
+                                </div>
+                                <div class="portfolio_title">
+                                    <a href="#"><h4><?php the_title();?></h4></a>
+                                    <h5><?php echo get_field('option_type'); ?></h5>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-md-4 photo marketing">
-                        <div class="portfolio_item">
-                            <div class="portfolio_img">
-                                <img src="<?php echo esc_url(home_url('/'));?>wp-content/themes/template/assets/profile/img/portfolio/portfolio-3.png" alt="">
-                            </div>
-                            <div class="portfolio_title">
-                                <a href="#"><h4>Dreams visualization</h4></a>
-                                <h5>Photography</h5>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4 design marketing">
-                        <div class="portfolio_item">
-                            <div class="portfolio_img">
-                                <img src="<?php echo esc_url(home_url('/'));?>wp-content/themes/template/assets/profile/img/portfolio/portfolio-4.png" alt="">
-                            </div>
-                            <div class="portfolio_title">
-                                <a href="#"><h4>Dreams visualization</h4></a>
-                                <h5>Photography</h5>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4 photo">
-                        <div class="portfolio_item">
-                            <div class="portfolio_img">
-                                <img src="<?php echo esc_url(home_url('/'));?>wp-content/themes/template/assets/profile/img/portfolio/portfolio-5.png" alt="">
-                            </div>
-                            <div class="portfolio_title">
-                                <a href="#"><h4>Dreams visualization</h4></a>
-                                <h5>Photography</h5>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4 marketing">
-                        <div class="portfolio_item">
-                            <div class="portfolio_img">
-                                <img src="<?php echo esc_url(home_url('/'));?>wp-content/themes/template/assets/profile/img/portfolio/portfolio-6.png" alt="">
-                            </div>
-                            <div class="portfolio_title">
-                                <a href="#"><h4>Dreams visualization</h4></a>
-                                <h5>Photography</h5>
-                            </div>
-                        </div>
-                    </div>
+                    <?php endwhile ; wp_reset_query() ;?>
+                    
                 </div>
             </div>
         </section>

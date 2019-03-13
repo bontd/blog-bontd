@@ -55,6 +55,18 @@ img {
     object-fit: cover;
 }
 
+.portfolio_img img {
+  max-height: 240px;
+  object-fit: cover;
+}
+
+.person_img img {
+    border-radius: 50%;
+    height: 300px;
+    object-fit: cover;
+    width: 300px;
+}
+
 @media (max-width: 767px) {
   .table-responsive,
   .table-responsive thead,
