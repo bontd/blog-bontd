@@ -68,7 +68,19 @@
                             </ul>
                         </div>
                         <ul class="social_icon">
-                            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                            <?php if($tp_options['facebook']){?>
+                                <li><a href="<?php echo $tp_options['facebook'] ?>" target="_blank"><i class="fa fa-facebook"></i></a></li>
+                            <?php } ?>
+                            <?php if($tp_options['twitter']){?>
+                                <li><a href="<?php echo $tp_options['twitter'] ?>" target="_blank"><i class="fa fa-twitter"></i></a></li>
+                            <?php } ?>
+                            <?php if($tp_options['google']){?>
+                                <li><a href="<?php echo $tp_options['google'] ?>" target="_blank"><i class="fa fa-google-plus"></i></a></li>
+                            <?php } ?>
+                            <?php if($tp_options['pinterest']){?>
+                                <li><a href="<?php echo $tp_options['pinterest'] ?>" target="_blank"><i class="fa fa-pinterest"></i></a></li>
+                            <?php } ?>
+                            <!-- <li><a href="#"><i class="fa fa-facebook"></i></a></li>
                             <li><a href="#"><i class="fa fa-twitter"></i></a></li>
                             <li><a href="#"><i class="fa fa-instagram"></i></a></li>
                             <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
@@ -77,7 +89,7 @@
                             <li><a href="#"><i class="fa fa-skype"></i></a></li>
                             <li><a href="#"><i class="fa fa-flickr"></i></a></li>
                             <li><a href="#"><i class="fa fa-dribbble"></i></a></li>
-                            <li><a href="#"><i class="fa fa-rss"></i></a></li>
+                            <li><a href="#"><i class="fa fa-rss"></i></a></li> -->
                         </ul>
                     </div>
                 </div>
@@ -131,7 +143,20 @@
                 <h2>2012 - NOW</h2>
             </div>
             <div class="education_inner_area">
-                <?php echo $tp_options['education'] ?>
+                <!-- <?php echo $tp_options['education'] ?> -->
+                <?php
+                    $get_post = new WP_Query(array(
+                    'post_type'=>'timeline',
+                    'posts_per_page'=> 20));
+                ?>
+                <?php while ($get_post->have_posts()) : $get_post->the_post(); ?>
+                    <div class="education_item wow fadeInUp animated" data-line="P">
+                        <h6><?php echo get_field('timeline_start'); ?>-<?php echo get_field('timeline_end'); ?></h6>
+                        <a href="#"><h4><?php the_title();?></h4></a>
+                        <h5><?php the_excerpt(); ?></h5>
+                        <?php the_content(); ?>
+                    </div>
+                <?php endwhile ; wp_reset_query() ;?>
             </div>
         </section>
         <section class="portfolio_area pad" id="portfolio">
@@ -141,9 +166,15 @@
             <div class="porfolio_menu">
                 <ul class="causes_filter">
                     <li class="active" data-filter="*"><a href="">All</a></li>
-                    <li data-filter=".html-css"><a href="">HTML & CSS</a></li>
-                    <li data-filter=".wordpress"><a href="">Wordpress</a></li>
-                    <li data-filter=".webview"><a href="">Webview</a></li>
+                    <?php
+                        global $wpdb;
+                        $results = $wpdb->get_results( 'SELECT DISTINCT meta_value FROM wp_postmeta WHERE meta_key LIKE "option_type"', OBJECT );
+                        // echo '<pre>';
+                        // echo print_r($results);die;
+                        foreach ($results as $value) {
+                    ?>
+                        <li data-filter=".<?php echo $value->meta_value; ?>"><a href=""><?php echo $value->meta_value; ?></a></li>
+                    <?php } ?>
                 </ul>
             </div>
             <div class="row mb-3">
@@ -152,7 +183,7 @@
                         $get_post = new WP_Query(array(
                         'post_type'=>'project',
                         'order' => 'DESC',
-                        'posts_per_page'=> 20));
+                        'posts_per_page'=> 50));
                     ?>
                     <?php while ($get_post->have_posts()) : $get_post->the_post(); ?>
                         <div class="col-md-4 <?php echo get_field('option_type'); ?>">
@@ -161,7 +192,7 @@
                                     <?php echo the_post_thumbnail();?>
                                 </div>
                                 <div class="portfolio_title">
-                                    <a href="#"><h4><?php the_title();?></h4></a>
+                                    <a href="<?php echo get_field('url'); ?>" target="_blank"><h4><?php the_title();?></h4></a>
                                     <h5><?php echo get_field('option_type'); ?></h5>
                                 </div>
                             </div>

@@ -293,57 +293,7 @@ function wp_style() {
 }
 add_action('wp_enqueue_scripts', 'wp_style');
 
-
-
-
-// function tao_custom_post_type()
-// {
-
-//     $label = array(
-//         'name' => 'project',
-//         'singular_name' => 'Project'
-//     );
-
-//     /*
-//      * Biến $args là những tham số quan trọng trong Post Type
-//      */
-//     $args = array(
-//         'labels' => $label,
-//         'description' => 'Post type Project',
-//         'supports' => array(
-//             'title',
-//             'editor',
-//             // 'excerpt',
-//             // 'author',
-//             // 'thumbnail',
-//             // 'comments',
-//             // 'trackbacks',
-//             // 'revisions',
-//             // 'custom-fields'
-//         ),
-//         // 'taxonomies' => array( 'category', 'post_tag' ),
-//         'hierarchical' => false,
-//         'public' => false,
-//         'show_ui' => true,
-//         'show_in_menu' => true,
-//         'show_in_nav_menus' => true,
-//         'show_in_admin_bar' => true,
-//         'menu_position' => 5,
-//         'menu_icon' => 'dashicons-megaphone',
-//         'can_export' => true,
-//         'has_archive' => true,
-//         'exclude_from_search' => false,
-//         'publicly_queryable' => true,
-//         'capability_type' => 'post',
-//         'supports' => array('title')
-//     );
-
-//     register_post_type('project', $args);
-
-// }
-// add_action('init', 'tao_custom_post_type');
-
-// create post topic
+// create post project
 add_action('init', 'create_post_type');
  
 function create_post_type() {
@@ -351,6 +301,31 @@ function create_post_type() {
             'labels' => array(
                 'name' => __('Project'),
                 'singular_name' => __('Project'),
+            ),
+            'public' => true,
+            'has_archive' => true,
+            'publicly_queryable' => true,
+			'show_ui'            => true,
+			'show_in_menu'       => true,
+			'query_var'          => true,
+			'rewrite'            => array( 'slug' => 'book' ),
+			'capability_type'    => 'post',
+			'has_archive'        => true,
+			'hierarchical'       => false,
+			'menu_position'      => null,
+            'supports'           => array( 'title', 'author', 'thumbnail', 'excerpt', 'comments' ),
+        )
+    );
+}
+
+// create post info timeline
+add_action('init', 'create_post_timeline');
+ 
+function create_post_timeline() {
+    register_post_type('timeline', array(
+            'labels' => array(
+                'name' => __('Timeline'),
+                'singular_name' => __('Timeline'),
             ),
             'public' => true,
             'has_archive' => true,

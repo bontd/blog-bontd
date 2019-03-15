@@ -78,7 +78,7 @@
                 );
 
                 $this->sections[] = array(
-                    'title'  => __( 'Header', 'wp' ),
+                    'title'  => __( 'Avatar', 'wp' ),
                     'desc'   => __( 'All of setings for header on this theme.', 'wp' ),
                     'icon'   => '',
                     // 'submenu' => false, // Setting submenu to false on a given section will hide it from the WordPress sidebar menu!
