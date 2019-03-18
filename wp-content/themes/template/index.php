@@ -44,7 +44,7 @@
 	<!-- container -->
 	<div class="container">
 		<!-- row -->
-		<div class="row">
+		<div class="row d-flex flex-wrap">
 			<div class="col-md-12">
 				<div class="section-title text-center">
 					<h2><?php echo __('Các bài viết khác','wp'); ?></h2>

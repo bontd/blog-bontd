@@ -73,6 +73,23 @@ img {
   flex-wrap: wrap;
 }
 
+.post .post-img > img {
+  min-height: 200px;
+  object-fit: cover;
+}
+
+.post.post-widget .post-img > img {
+  min-height: auto
+}
+
+.wp-block-image {
+  text-align: center;
+}
+
+.post-comments {
+  text-align: center;
+}
+
 @media (max-width: 767px) {
   .table-responsive,
   .table-responsive thead,
