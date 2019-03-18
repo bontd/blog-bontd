@@ -56,7 +56,7 @@
             <div id="nav-aside">
                 <!-- nav -->
                 <div class="section-row nav-aside-menu">
-                    <?php wp_menu_footer('about-menu'); ?>
+                    <?php wp_menu_footer('footer-menu'); ?>
                 </div>
                 <!-- /nav -->
                 <!-- widget posts -->
@@ -64,7 +64,7 @@
                     <h3><?php echo __('Bài viết xem nhiều','wp'); ?></h3>
                     <?php
                         $get_post = new WP_Query(array(
-                            'posts_per_page' => 3, 
+                            'posts_per_page' => 10, 
                             'meta_key' => 'wpb_post_views_count', 
                             'orderby' => 'meta_value_num', 
                             'order' => 'DESC'  
@@ -90,14 +90,14 @@
                     <ul class="nav-aside-social">
                         <?php if($tp_options['facebook']){?>
                             <li><a href="<?php echo $tp_options['facebook'] ?>" target="_blank"><i class="fa fa-facebook"></i></a></li>
-                        <?php } ?>
-                        <?php if($tp_options['twitter']){?>
+                        <?php } 
+                        if($tp_options['twitter']){?>
                             <li><a href="<?php echo $tp_options['twitter'] ?>" target="_blank"><i class="fa fa-twitter"></i></a></li>
-                        <?php } ?>
-                        <?php if($tp_options['google']){?>
+                        <?php }
+                        if($tp_options['google']){?>
                             <li><a href="<?php echo $tp_options['google'] ?>" target="_blank"><i class="fa fa-google-plus"></i></a></li>
-                        <?php } ?>
-                        <?php if($tp_options['pinterest']){?>
+                        <?php }
+                        if($tp_options['pinterest']){?>
                             <li><a href="<?php echo $tp_options['pinterest'] ?>" target="_blank"><i class="fa fa-pinterest"></i></a></li>
                         <?php } ?>
                     </ul>
